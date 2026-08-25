@@ -25,6 +25,7 @@ def generate_launch_description():
     joy          = LaunchConfiguration('joy')
     slam         = LaunchConfiguration('slam')
     toolbox      = LaunchConfiguration('toolbox')
+    realsense    = LaunchConfiguration('realsense')
 
 
     full_stack = PythonExpression(["str(", slam, ").lower() in ['false', '0']"])
@@ -152,6 +153,12 @@ def generate_launch_description():
         launch_arguments={'use_sim_time': use_sim_time}.items(),
     )
 
+    realsense_launch_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(firmware_dir, 'realsense_d435i.launch.py')),
+        condition=IfCondition(realsense),
+    )
+
     return LaunchDescription([
         SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
 
@@ -181,6 +188,10 @@ def generate_launch_description():
             name='joy', default_value='True',
             description='Enable joystick control'
         ),
+        DeclareLaunchArgument(
+            name='realsense', default_value='False',
+            description='Realsense camera node'
+        ),
 
         rviz_launch_cmd,
         state_publisher_launch_cmd,
@@ -195,4 +206,5 @@ def generate_launch_description():
         microros_node,
         network_status_node,
         auto_joy_cmd,
+        realsense_launch_cmd,
     ])

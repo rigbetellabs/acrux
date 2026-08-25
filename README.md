@@ -191,6 +191,7 @@ Connect your PC to the same Wi-Fi and SSH into the robot using its newly assigne
 | Launch File / Script | Description |
 |---|---|
 | `auto_joy_teleop.launch.py` | Joystick driver and waypoint teleoperation node. |
+| `realsense_d435i.launch.py` | Launches Intel RealSense D435i camera node with pointcloud generation and compressed image republishing. |
 | `network_status_publisher_node` | Broadcasts network connectivity telemetry to onboard displays. |
 | `x2_params.yaml` | Hardware configuration parameters for YDLidar sensors. |
 
@@ -250,6 +251,7 @@ ros2 launch acrux_bringup bringup.launch.py joy:=True
 | `toolbox` | Set `True` to use **SLAM Toolbox** for mapping/localization. `False` uses Cartographer / AMCL. | `False` |
 | `map_file` | Path to a `.yaml` map file for localization mode (`exploration:=False`). | `nav2_test_map.yaml` |
 | `joy` | Enable joystick teleoperation and waypoint navigation. | `True` |
+| `realsense` | Enable Intel RealSense D435i camera node and image compression. | `False` |
 
 ---
 
