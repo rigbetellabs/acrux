@@ -335,10 +335,10 @@ ros2 launch acrux_bringup autobringup.launch.py use_sim_time:=True exploration:=
 
 <div style="page-break-after: always;"></div>
 
-To save the map after any SLAM session:
+To save the map after any SLAM session in another terminal:
 
 ```bash
-ros2 launch acrux_navigation map_saver.launch.py map_file_path:=/your/map/directory
+ros2 run nav2_map_server map_saver_cli -f /path/to/save/my_map
 ```
 
 ### 5.2 Autonomous Navigation in a Saved Map
